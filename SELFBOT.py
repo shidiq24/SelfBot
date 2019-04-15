@@ -615,13 +615,13 @@ def clientBot(op):
 								client.sendMessage(to, "Detect unsend is already on u bish")
 							else:
 								settings["detectUnsend"] = True
-								client.sendMessage(to, "detect unsend is on time to be snake")
+								client.sendMessage(to, "detect unsend is on, time to be snake")
 						elif cmd == "unsend off":
 							if settings["detectUnsend"] == False:
-								client.sendMessage(to, "Detect unsend is dead")
+								client.sendMessage(to, "Detect unsend is already dead, stop trying")
 							else:
 								settings["detectUnsend"] = False
-								client.sendMessage(to, "detect unsend is off, snake has lost")
+								client.sendMessage(to, "detect unsend is off, the snake has lost")
 						elif cmd.startswith("setadd: "):
 							sep = text.split(" ")
 							txt = text.replace(sep[0] + " ","")
@@ -1561,8 +1561,10 @@ def clientBot(op):
 								sendTime = timeChange(sendTime)
 								ret_ = "╔════➢ Unsend Message "
 								ret_ += "\n╠ Sender : @!"
+								ret_ += "\n╠ Time : {} yang lalu".format(sendTime)
+								ret_ += "\n╠ Type : Text"
 								ret_ += "\n╠ Text : {}".format(unsend[sender]["text"])
-								ret_ += "\n╚════➢ "
+								ret_ += "\n╚════➢ Finish "
 								client.sendMention(to, ret_, [contact.mid])
 								del unsend[sender]
 							except:
@@ -1573,7 +1575,7 @@ def clientBot(op):
 								sendTime = timeChange(sendTime)
 								ret_ = "╔════➢ Unsend Message "
 								ret_ += "\n╠ Sender : @!"
-								ret_ += "\n╚════➢ Finish "
+								ret_ += "\n╚════➢  "
 								client.sendMention(to, ret_, [contact.mid])
 								client.sendImage(to, unsend[sender]["image"])
 								client.deleteFile(unsend[sender]["image"])
@@ -1582,7 +1584,7 @@ def clientBot(op):
 								client.deleteFile(unsend[sender]["image"])
 								del unsend[sender]
 					else:
-						client.sendMessage(to, "Data unsend tidak ditemukan")
+						client.sendMessage(to, "")
 			except Exception as error:
 				logError(error)
 		backupData()
