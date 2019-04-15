@@ -452,7 +452,7 @@ def clientBot(op):
 							timeNow = time.time()
 							runtime = timeNow - clientStart
 							runtime = timeChange(runtime)
-							client.sendMessage(to, "Selfbot telah aktif selama {}".format(str(runtime)))
+							client.sendMessage(to, "Selfbot active for {}".format(str(runtime)))
 						elif cmd.startswith("setkey: "):
 							sep = text.split(" ")
 							key = text.replace(sep[0] + " ","")
@@ -516,7 +516,7 @@ def clientBot(op):
 								logError(error)
 						elif cmd == "autadd on":
 							if settings["autoAdd"] == True:
-								client.sendMessage(to, "Auto add telah aktif")
+								client.sendMessage(to, "Auto add is activated")
 							else:
 								settings["autoAdd"] = True
 								client.sendMessage(to, "Berhasil mengaktifkan auto add")
@@ -1561,10 +1561,8 @@ def clientBot(op):
 								sendTime = timeChange(sendTime)
 								ret_ = "╔════➢ Unsend Message "
 								ret_ += "\n╠ Sender : @!"
-								ret_ += "\n╠ Time : {} yang lalu".format(sendTime)
-								ret_ += "\n╠ Type : Text"
 								ret_ += "\n╠ Text : {}".format(unsend[sender]["text"])
-								ret_ += "\n╚════➢ Finish "
+								ret_ += "\n╚════➢"
 								client.sendMention(to, ret_, [contact.mid])
 								del unsend[sender]
 							except:
