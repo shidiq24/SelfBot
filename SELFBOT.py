@@ -441,7 +441,7 @@ def clientBot(op):
 							sys.exit("[ INFO ] BOT SHUTDOWN")
 							return
 						elif cmd == "restart":
-							client.sendMessage(to, "Berhasil mereset bot")
+							client.sendMessage(to, "Bot is RESETTED, the evil has been respawn")
 							restartBot()
 						elif cmd == "speed":
 							start = time.time()
