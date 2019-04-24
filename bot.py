@@ -1571,7 +1571,7 @@ def clientBot(op):
 							try:
 								sendTime = unsendTime - unsend[sender]["time"]
 								sendTime = timeChange(sendTime)
-								ret_ = "╔════➢ Unsend Image "
+								ret_ = "╔════➢ Unsend Message "
 								ret_ += "\n╠ Sender : @!"
 								ret_ += "\n╚════➢  "
 								client.sendMention(to, ret_, [contact.mid])
