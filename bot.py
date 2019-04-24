@@ -1311,6 +1311,42 @@ def clientBot(op):
 									client.sendImageWithURL(to, str(data["result"]["img"]))
 									client.sendMessage(to, str(ret_))
 									client.sendAudioWithURL(to, str(data["result"]["mp3"][0]))
+									elif cmd.startswith('kick '):
+        if msg.toType != 2: return line.sendMessage(to, 'Failed kick member, use this command only on group chat')
+        if 'MENTION' in msg.contentMetadata.keys():
+            mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
+            for mention in mentions['MENTIONEES']:
+                mid = mention['M']
+                if mid == myMid:
+                    continue
+                try:
+                    line.kickoutFromGroup(to, [mid])
+                except TalkException as talk_error:
+                    return line.sendMessage(to, 'Failed kick members, the reason is `%s`' % talk_error.reason)
+                time.sleep(0.8)
+            line.sendMessage(to, 'Success kick members, totals %i members' % len(mentions['MENTIONEES']))
+        else:
+            line.sendMessage(to, 'Failed kick member, please mention user you want to kick')
+    elif cmd.startswith('vkick '):
+        if msg.toType != 2: return line.sendMessage(to, 'Failed vultra kick member, use this command only on group chat')
+        if 'MENTION' in msg.contentMetadata.keys():
+            mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
+            for mention in mentions['MENTIONEES']:
+                mid = mention['M']
+                if mid == myMid:
+                    continue
+                try:
+                    line.kickoutFromGroup(to, [mid])
+                    line.findAndAddContactsByMid(mid)
+                    line.inviteIntoGroup(to, [mid])
+                    line.cancelGroupInvitation(to, [mid])
+                except TalkException as talk_error:
+                    return line.sendMessage(to, 'Failed vultra kick members, the reason is `%s`' % talk_error.reason)
+                time.sleep(0.8)
+            line.sendMessage(to, 'Success vultra kick members, totals %i members' % len(mentions['MENTIONEES']))
+        else:
+            line.sendMessage(to, 'Failed vultra kick member, please mention user you want to kick')
+
 						elif cmd.startswith("lyric "):
 							sep = text.split(" ")
 							txt = text.replace(sep[0] + " ","")
@@ -1571,7 +1607,7 @@ def clientBot(op):
 							try:
 								sendTime = unsendTime - unsend[sender]["time"]
 								sendTime = timeChange(sendTime)
-								ret_ = "╔════➢ Unsend Message "
+								ret_ = "╔════➢ Unsend Image "
 								ret_ += "\n╠ Sender : @!"
 								ret_ += "\n╚════➢  "
 								client.sendMention(to, ret_, [contact.mid])
