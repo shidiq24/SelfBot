@@ -1142,7 +1142,7 @@ def clientBot(op):
 							if settings["mimic"]["status"] == True:
 								client.sendMessage(to, "Ueno you better be careful")
 							else:
-								settings["watch"]["status"] = True
+								settings["mimic"]["status"] = True
 								client.sendMessage(to, "let make UENO behave")
 						elif cmd == "watch off":
 							if settings["mimic"]["status"] == False:
@@ -1505,12 +1505,8 @@ def clientBot(op):
 					elif msg.toType == 2:
 						to = receiver
 					if sender in settings["mimic"]["target"] and settings["mimic"]["status"] == True and settings["mimic"]["target"][sender] == True:
-						if msg.contentType == 0:
-							client.sendMessage(to, text)
-						elif msg.contentType == 1:
-							path = client.downloadObjectMsg(msg_id, saveAs="LineAPI/tmp/{}-mimic.bin".format(time.time()))
-							client.sendImage(to, path)
-							client.deleteFile(path)
+						if msg.contentType = "acchan":
+							client.sendMessage(to, "trial")
 					if msg.contentType == 0:
 						if settings["autoRead"] == True:
 							client.sendChatChecked(to, msg_id)
