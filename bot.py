@@ -741,15 +741,13 @@ def clientBot(op):
 								mention = ast.literal_eval(msg.contentMetadata['MENTION'])
 								mentionees = mention['MENTIONEES']
 								lists = []
-				                for mention in mentionees:
+								for mention in mentionees:
 									if mention["M"] not in lists:
 										lists.append(mention["M"])
-				                  for ls in lists:
-				                    try:
-				                        client.kickoutFromGroup(msg.to,[target])
-				                    except:
-				                      client.sendMessage(to, "Bye bye")
-				                      pass
+								for ls in lists:
+									client.sendMention(to, "@! bye bye", [ls])
+									kickoutFromGroup(msg.to,[target])
+
 						elif cmd.startswith("pict "):
 							if 'MENTION' in msg.contentMetadata.keys()!= None:
 								names = re.findall(r'@(\w+)', text)
