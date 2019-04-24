@@ -15,7 +15,7 @@
     "checkContact": false,
     "checkPost": false,
     "checkSticker": false,
-    "detectUnsend": false,
+    "detectUnsend": true,
     "fotterlink": "https://www.instagram.com/phie_cobain",
     "keyCommand": "",
     "mimic": {

@@ -197,7 +197,7 @@ def menuHelp():
 				"╠ " + key + "GroupBc: 「Text」" + "\n" + \
 				"╠ " + key + "ChangeGPict" + "\n" + \
 				"╠════➢ Special Command " + "\n" + \
-				"╠ " + key + "Mimic 「On/Off」" + "\n" + \
+				"╠ " + key + "Watch Ueno 「On/Off」" + "\n" + \
 				"╠ " + key + "MicList" + "\n" + \
 				"╠ " + key + "MicAdd @Mention" + "\n" + \
 				"╠ " + key + "MicDel @Mention" + "\n" + \
@@ -735,6 +735,7 @@ def clientBot(op):
 								for ls in lists:
 									contact = client.getContact(ls)
 									client.sendMention(to, "@!: {}".format(contact.statusMessage), [ls])
+									
 						elif cmd.startswith("kick "):
 							if 'MENTION' in msg.contentMetadata.keys()!= None:
 								names = re.findall(r'@(\w+)', text)
@@ -1137,18 +1138,18 @@ def clientBot(op):
 								if to not in settings["changeGroupPicture"]:
 									settings["changeGroupPicture"].append(to)
 								client.sendMessage(to, "Silahkan kirim gambarnya")
-						elif cmd == "mimic on":
-							if settings["mimic"]["status"] == True:
-								client.sendMessage(to, "Reply message telah aktif")
+						elif cmd == "watch on":
+							if settings["watch"]["status"] == True:
+								client.sendMessage(to, "Ueno you better be careful")
 							else:
-								settings["mimic"]["status"] = True
-								client.sendMessage(to, "Berhasil mengaktifkan reply message")
-						elif cmd == "mimic off":
-							if settings["mimic"]["status"] == False:
-								client.sendMessage(to, "Reply message telah nonaktif")
+								settings["watch"]["status"] = True
+								client.sendMessage(to, "let make UENO behave")
+						elif cmd == "watch off":
+							if settings["watch"]["status"] == False:
+								client.sendMessage(to, "ueno, you are free")
 							else:
-								settings["mimic"]["status"] = False
-								client.sendMessage(to, "Berhasil menonaktifkan reply message")
+								settings["watch"]["status"] = False
+								client.sendMessage(to, "the lease has been cut off, UENO IS FREE")
 						elif cmd == "miclist":
 							if settings["mimic"]["target"] == {}:
 								client.sendMessage(to, "Tidak Ada Target")
@@ -1522,7 +1523,7 @@ def clientBot(op):
 									for mention in mentionees:
 										if clientMid in mention["M"]:
 											if settings["autoRespon"] == True:
-												client.sendMention(sender, settings["autoResponMessage"], [sender])
+												client.sendMessage(sender, settings["autoResponMessage"], [sender])
 											break
 						if text is None: return
 						if "/ti/g/" in msg.text.lower():
