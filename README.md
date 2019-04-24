@@ -11,7 +11,7 @@ $ apt update
 $ apt upgrade
 $ apt install python
 $ apt install git
-$ git clone https://github.com/shidiq24/selfBOT
+$ git clone https://github.com/PHIEZUKE/selfBOT
 $ pip3 install beautifulsoup4==4.6.0
 $ pip3 install bs4==0.0.1
 $ pip3 install certifi==2018.4.16
@@ -34,7 +34,7 @@ $ python SELFBOT.py
 ## Installation for VPS
 
 ```sh
-$ git clone https://github.com/shidiq24/selfBOT
+$ git clone https://github.com/PHIEZUKE/selfBOT
 $ pip install beautifulsoup4==4.6.0
 $ pip install bs4==0.0.1
 $ pip install certifi==2018.4.16
@@ -58,3 +58,11 @@ $ python3 SELFBOT.py
 
 for the first time running python selfBOT.py will be an error
 
+## LINE
+[LINE OA](https://line.me/ti/p/~qqo7303u)
+
+## Discord
+[PH-13](https://discord.gg/5jqbutB)
+
+## Thanks For Author linepy
+Fadhiil Rachman / [@fadhiilrachman](https://www.instagram.com/me)

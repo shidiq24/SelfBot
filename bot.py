@@ -84,12 +84,12 @@ def timeChange(secs):
 	weeks, days = divmod(days,7)
 	months, weeks = divmod(weeks,4)
 	text = ""
-	if months != 0: text += "%02d Months" % (months)
-	if weeks != 0: text += " %02d Weeks" % (weeks)
-	if days != 0: text += " %02d Days" % (days)
-	if hours !=  0: text +=  " %02d hours" % (hours)
-	if mins != 0: text += " %02d mins" % (mins)
-	if secs != 0: text += " %02d secs" % (secs)
+	if months != 0: text += "%02d Bulan" % (months)
+	if weeks != 0: text += " %02d Minggu" % (weeks)
+	if days != 0: text += " %02d Hari" % (days)
+	if hours !=  0: text +=  " %02d Jam" % (hours)
+	if mins != 0: text += " %02d Menit" % (mins)
+	if secs != 0: text += " %02d Detik" % (secs)
 	if text[0] == " ":
 		text = text[1:]
 	return text
@@ -131,6 +131,8 @@ def menuHelp():
 		key = ''
 	menuHelp =	"╔════➢ Help Message " + "\n" + \
 				"╠ " + key + "Help" + "\n" + \
+				"╠ " + key + "Translate" + "\n" + \
+				"╠ " + key + "TTS" + "\n" + \
 				"╠════➢ Status Command " + "\n" + \
 				"╠ MyKey" + "\n" + \
 				"╠ " + key + "Logout" + "\n" + \
@@ -214,6 +216,185 @@ def menuHelp():
 				"╚════➢ Copyright @Python-3 "
 	return menuHelp
 
+def menuTextToSpeech():
+	if settings['setKey'] == True:
+		key = settings['keyCommand']
+	else:
+		key = ''
+	menuTextToSpeech =	"╔════➢ Text To Speech " + "\n" + \
+						"╠ " + key + "af : Afrikaans" + "\n" + \
+						"╠ " + key + "sq : Albanian" + "\n" + \
+						"╠ " + key + "ar : Arabic" + "\n" + \
+						"╠ " + key + "hy : Armenian" + "\n" + \
+						"╠ " + key + "bn : Bengali" + "\n" + \
+						"╠ " + key + "ca : Catalan" + "\n" + \
+						"╠ " + key + "zh : Chinese" + "\n" + \
+						"╠ " + key + "zh-cn : Chinese (Mandarin/China)" + "\n" + \
+						"╠ " + key + "zh-tw : Chinese (Mandarin/Taiwan)" + "\n" + \
+						"╠ " + key + "zh-yue : Chinese (Cantonese)" + "\n" + \
+						"╠ " + key + "hr : Croatian" + "\n" + \
+						"╠ " + key + "cs : Czech" + "\n" + \
+						"╠ " + key + "da : Danish" + "\n" + \
+						"╠ " + key + "nl : Dutch" + "\n" + \
+						"╠ " + key + "en : English" + "\n" + \
+						"╠ " + key + "en-au : English (Australia)" + "\n" + \
+						"╠ " + key + "en-uk : English (United Kingdom)" + "\n" + \
+						"╠ " + key + "en-us : English (United States)" + "\n" + \
+						"╠ " + key + "eo : Esperanto" + "\n" + \
+						"╠ " + key + "fi : Finnish" + "\n" + \
+						"╠ " + key + "fr : French" + "\n" + \
+						"╠ " + key + "de : German" + "\n" + \
+						"╠ " + key + "el : Greek" + "\n" + \
+						"╠ " + key + "hi : Hindi" + "\n" + \
+						"╠ " + key + "hu : Hungarian" + "\n" + \
+						"╠ " + key + "is : Icelandic" + "\n" + \
+						"╠ " + key + "id : Indonesian" + "\n" + \
+						"╠ " + key + "it : Italian" + "\n" + \
+						"╠ " + key + "ja : Japanese" + "\n" + \
+						"╠ " + key + "km : Khmer (Cambodian)" + "\n" + \
+						"╠ " + key + "ko : Korean" + "\n" + \
+						"╠ " + key + "la : Latin" + "\n" + \
+						"╠ " + key + "lv : Latvian" + "\n" + \
+						"╠ " + key + "mk : Macedonian" + "\n" + \
+						"╠ " + key + "no : Norwegian" + "\n" + \
+						"╠ " + key + "pl : Polish" + "\n" + \
+						"╠ " + key + "pt : Portuguese" + "\n" + \
+						"╠ " + key + "ro : Romanian" + "\n" + \
+						"╠ " + key + "ru : Russian" + "\n" + \
+						"╠ " + key + "sr : Serbian" + "\n" + \
+						"╠ " + key + "si : Sinhala" + "\n" + \
+						"╠ " + key + "sk : Slovak" + "\n" + \
+						"╠ " + key + "es : Spanish" + "\n" + \
+						"╠ " + key + "es-es : Spanish (Spain)" + "\n" + \
+						"╠ " + key + "es-us : Spanish (United States)" + "\n" + \
+						"╠ " + key + "sw : Swahili" + "\n" + \
+						"╠ " + key + "sv : Swedish" + "\n" + \
+						"╠ " + key + "ta : Tamil" + "\n" + \
+						"╠ " + key + "th : Thai" + "\n" + \
+						"╠ " + key + "tr : Turkish" + "\n" + \
+						"╠ " + key + "uk : Ukrainian" + "\n" + \
+						"╠ " + key + "vi : Vietnamese" + "\n" + \
+						"╠ " + key + "cy : Welsh" + "\n" + \
+						"╚════➢ Jangan Typo " + "\n" + "\n\n" + \
+						"Contoh : " + key + "say-id honey"
+	return menuTextToSpeech
+
+def menuTranslate():
+	if settings['setKey'] == True:
+		key = settings['keyCommand']
+	else:
+		key = ''
+	menuTranslate =	"╔════➢ Translate " + "\n" + \
+					"╠ " + key + "af : afrikaans" + "\n" + \
+					"╠ " + key + "sq : albanian" + "\n" + \
+					"╠ " + key + "am : amharic" + "\n" + \
+					"╠ " + key + "ar : arabic" + "\n" + \
+					"╠ " + key + "hy : armenian" + "\n" + \
+					"╠ " + key + "az : azerbaijani" + "\n" + \
+					"╠ " + key + "eu : basque" + "\n" + \
+					"╠ " + key + "be : belarusian" + "\n" + \
+					"╠ " + key + "bn : bengali" + "\n" + \
+					"╠ " + key + "bs : bosnian" + "\n" + \
+					"╠ " + key + "bg : bulgarian" + "\n" + \
+					"╠ " + key + "ca : catalan" + "\n" + \
+					"╠ " + key + "ceb : cebuano" + "\n" + \
+					"╠ " + key + "ny : chichewa" + "\n" + \
+					"╠ " + key + "zh-cn : chinese (simplified)" + "\n" + \
+					"╠ " + key + "zh-tw : chinese (traditional)" + "\n" + \
+					"╠ " + key + "co : corsican" + "\n" + \
+					"╠ " + key + "hr : croatian" + "\n" + \
+					"╠ " + key + "cs : czech" + "\n" + \
+					"╠ " + key + "da : danish" + "\n" + \
+					"╠ " + key + "nl : dutch" + "\n" + \
+					"╠ " + key + "en : english" + "\n" + \
+					"╠ " + key + "eo : esperanto" + "\n" + \
+					"╠ " + key + "et : estonian" + "\n" + \
+					"╠ " + key + "tl : filipino" + "\n" + \
+					"╠ " + key + "fi : finnish" + "\n" + \
+					"╠ " + key + "fr : french" + "\n" + \
+					"╠ " + key + "fy : frisian" + "\n" + \
+					"╠ " + key + "gl : galician" + "\n" + \
+					"╠ " + key + "ka : georgian" + "\n" + \
+					"╠ " + key + "de : german" + "\n" + \
+					"╠ " + key + "el : greek" + "\n" + \
+					"╠ " + key + "gu : gujarati" + "\n" + \
+					"╠ " + key + "ht : haitian creole" + "\n" + \
+					"╠ " + key + "ha : hausa" + "\n" + \
+					"╠ " + key + "haw : hawaiian" + "\n" + \
+					"╠ " + key + "iw : hebrew" + "\n" + \
+					"╠ " + key + "hi : hindi" + "\n" + \
+					"╠ " + key + "hmn : hmong" + "\n" + \
+					"╠ " + key + "hu : hungarian" + "\n" + \
+					"╠ " + key + "is : icelandic" + "\n" + \
+					"╠ " + key + "ig : igbo" + "\n" + \
+					"╠ " + key + "id : indonesian" + "\n" + \
+					"╠ " + key + "ga : irish" + "\n" + \
+					"╠ " + key + "it : italian" + "\n" + \
+					"╠ " + key + "ja : japanese" + "\n" + \
+					"╠ " + key + "jw : javanese" + "\n" + \
+					"╠ " + key + "kn : kannada" + "\n" + \
+					"╠ " + key + "kk : kazakh" + "\n" + \
+					"╠ " + key + "km : khmer" + "\n" + \
+					"╠ " + key + "ko : korean" + "\n" + \
+					"╠ " + key + "ku : kurdish (kurmanji)" + "\n" + \
+					"╠ " + key + "ky : kyrgyz" + "\n" + \
+					"╠ " + key + "lo : lao" + "\n" + \
+					"╠ " + key + "la : latin" + "\n" + \
+					"╠ " + key + "lv : latvian" + "\n" + \
+					"╠ " + key + "lt : lithuanian" + "\n" + \
+					"╠ " + key + "lb : luxembourgish" + "\n" + \
+					"╠ " + key + "mk : macedonian" + "\n" + \
+					"╠ " + key + "mg : malagasy" + "\n" + \
+					"╠ " + key + "ms : malay" + "\n" + \
+					"╠ " + key + "ml : malayalam" + "\n" + \
+					"╠ " + key + "mt : maltese" + "\n" + \
+					"╠ " + key + "mi : maori" + "\n" + \
+					"╠ " + key + "mr : marathi" + "\n" + \
+					"╠ " + key + "mn : mongolian" + "\n" + \
+					"╠ " + key + "my : myanmar (burmese)" + "\n" + \
+					"╠ " + key + "ne : nepali" + "\n" + \
+					"╠ " + key + "no : norwegian" + "\n" + \
+					"╠ " + key + "ps : pashto" + "\n" + \
+					"╠ " + key + "fa : persian" + "\n" + \
+					"╠ " + key + "pl : polish" + "\n" + \
+					"╠ " + key + "pt : portuguese" + "\n" + \
+					"╠ " + key + "pa : punjabi" + "\n" + \
+					"╠ " + key + "ro : romanian" + "\n" + \
+					"╠ " + key + "ru : russian" + "\n" + \
+					"╠ " + key + "sm : samoan" + "\n" + \
+					"╠ " + key + "gd : scots gaelic" + "\n" + \
+					"╠ " + key + "sr : serbian" + "\n" + \
+					"╠ " + key + "st : sesotho" + "\n" + \
+					"╠ " + key + "sn : shona" + "\n" + \
+					"╠ " + key + "sd : sindhi" + "\n" + \
+					"╠ " + key + "si : sinhala" + "\n" + \
+					"╠ " + key + "sk : slovak" + "\n" + \
+					"╠ " + key + "sl : slovenian" + "\n" + \
+					"╠ " + key + "so : somali" + "\n" + \
+					"╠ " + key + "es : spanish" + "\n" + \
+					"╠ " + key + "su : sundanese" + "\n" + \
+					"╠ " + key + "sw : swahili" + "\n" + \
+					"╠ " + key + "sv : swedish" + "\n" + \
+					"╠ " + key + "tg : tajik" + "\n" + \
+					"╠ " + key + "ta : tamil" + "\n" + \
+					"╠ " + key + "te : telugu" + "\n" + \
+					"╠ " + key + "th : thai" + "\n" + \
+					"╠ " + key + "tr : turkish" + "\n" + \
+					"╠ " + key + "uk : ukrainian" + "\n" + \
+					"╠ " + key + "ur : urdu" + "\n" + \
+					"╠ " + key + "uz : uzbek" + "\n" + \
+					"╠ " + key + "vi : vietnamese" + "\n" + \
+					"╠ " + key + "cy : welsh" + "\n" + \
+					"╠ " + key + "xh : xhosa" + "\n" + \
+					"╠ " + key + "yi : yiddish" + "\n" + \
+					"╠ " + key + "yo : yoruba" + "\n" + \
+					"╠ " + key + "zu : zulu" + "\n" + \
+					"╠ " + key + "fil : Filipino" + "\n" + \
+					"╠ " + key + "he : Hebrew" + "\n" + \
+					"╚════➢ Jangan Typo " + "\n" + "\n\n" + \
+					"Contoh : " + key + "tr-id darling"
+	return menuTranslate
+
 def clientBot(op):
 	try:
 		if op.type == 0:
@@ -256,7 +437,7 @@ def clientBot(op):
 						to = receiver
 					if msg.contentType == 0:
 						if cmd == "logout":
-							client.sendMessage(to, "The Devil has killed")
+							client.sendMessage(to, "Berhasil mematikan selfbot")
 							sys.exit("[ INFO ] BOT SHUTDOWN")
 							return
 						elif cmd == "restart":
@@ -264,9 +445,9 @@ def clientBot(op):
 							restartBot()
 						elif cmd == "speed":
 							start = time.time()
-							client.sendMessage(to, "Speed ...")
+							client.sendMessage(to, "Menghitung kecepatan...")
 							elapsed_time = time.time() - start
-							client.sendMessage(to, "The Speed is {} detik".format(str(elapsed_time)))
+							client.sendMessage(to, "Kecepatan mengirim pesan {} detik".format(str(elapsed_time)))
 						elif cmd == "runtime":
 							timeNow = time.time()
 							runtime = timeNow - clientStart
@@ -347,10 +528,10 @@ def clientBot(op):
 								client.sendMessage(to, "Berhasil menonaktifkan auto add")
 						elif cmd == "autjoin on":
 							if settings["autoJoin"] == True:
-								client.sendMessage(to, "Auto join is on")
+								client.sendMessage(to, "Auto join telah aktif")
 							else:
 								settings["autoJoin"] = True
-								client.sendMessage(to, "Auto Join is activated")
+								client.sendMessage(to, "Berhasil mengaktifkan auto join")
 						elif cmd == "autjoin off":
 							if settings["autoJoin"] == False:
 								client.sendMessage(to, "Auto join telah nonaktif")
@@ -465,6 +646,8 @@ def clientBot(op):
 								client.sendMessage(to, "Berhasil mengubah pesan auto join menjadi : 「{}」".format(txt))
 							except:
 								client.sendMessage(to, "Gagal mengubah pesan auto join")
+
+
 						elif cmd.startswith("changename: "):
 							sep = text.split(" ")
 							name = text.replace(sep[0] + " ","")
@@ -1162,7 +1345,21 @@ def clientBot(op):
 											data = BeautifulSoup(url.content, "html5lib")
 											for lyricContent in data.findAll("p", {"class":"mxm-lyrics__content "}):
 												lyric = lyricContent.text
-									if text.lower() == "mykey":
+												client.sendMessage(to, lyric)
+						elif cmd.startswith("tr-"):
+							sep = text.split("-")
+							sep = sep[1].split(" ")
+							lang = sep[0]
+							if settings["setKey"] == False:
+								txt = text.lower().replace("tr-" + lang + " ","")
+							else:
+								txt = text.lower().replace(settings["keyCommand"] + "tr-" + lang + " ","")
+							if lang not in language["googletrans"]:
+								return client.sendMessage(to, "Bahasa {} tidak ditemukan".format(lang))
+							translator = Translator()
+							result = translator.translate(txt, dest=lang)
+							client.sendMessage(to, result.text)
+						if text.lower() == "mykey":
 							client.sendMessage(to, "Keycommand yang diset saat ini : 「{}」".format(str(settings["keyCommand"])))
 						elif text.lower() == "setkey on":
 							if settings["setKey"] == True:
@@ -1189,7 +1386,6 @@ def clientBot(op):
 									group = client.findGroupByTicket(ticket_id)
 									client.acceptGroupInvitationByTicket(group.id,ticket_id)
 									client.sendMessage(to, "Berhasil masuk ke group %s" % str(group.name))
-					
 					elif msg.contentType == 1:
 						if settings["changePictureProfile"] == True:
 							path = client.downloadObjectMsg(msg_id, saveAs="LineAPI/tmp/{}-cpp.bin".format(time.time()))
@@ -1313,7 +1509,6 @@ def clientBot(op):
 											if settings["autoRespon"] == True:
 												client.sendMention(sender, settings["autoResponMessage"], [sender])
 											break
-
 						if text is None: return
 						if "/ti/g/" in msg.text.lower():
 							if settings["autoJoinTicket"] == True:
@@ -1376,7 +1571,7 @@ def clientBot(op):
 							try:
 								sendTime = unsendTime - unsend[sender]["time"]
 								sendTime = timeChange(sendTime)
-								ret_ = "╔════➢ Unsend Picture "
+								ret_ = "╔════➢ Unsend Image "
 								ret_ += "\n╠ Sender : @!"
 								ret_ += "\n╚════➢  "
 								client.sendMention(to, ret_, [contact.mid])
