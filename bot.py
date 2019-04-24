@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from googletrans import Translator
 import ast, codecs, json, os, pytz, re, random, requests, sys, time, urllib.parse
+import codecs,threading,glob,subprocess
 
 listApp = ["CHROMEOS", "DESKTOPWIN", "DESKTOPMAC", "IOSIPAD", "WIN10"]
 try:
@@ -1312,40 +1313,19 @@ def clientBot(op):
 									client.sendMessage(to, str(ret_))
 									client.sendAudioWithURL(to, str(data["result"]["mp3"][0]))
 									elif cmd.startswith('kick '):
-        if msg.toType != 2: return line.sendMessage(to, 'Failed kick member, use this command only on group chat')
-        if 'MENTION' in msg.contentMetadata.keys():
-            mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
-            for mention in mentions['MENTIONEES']:
-                mid = mention['M']
-                if mid == myMid:
-                    continue
-                try:
-                    line.kickoutFromGroup(to, [mid])
-                except TalkException as talk_error:
-                    return line.sendMessage(to, 'Failed kick members, the reason is `%s`' % talk_error.reason)
-                time.sleep(0.8)
-            line.sendMessage(to, 'Success kick members, totals %i members' % len(mentions['MENTIONEES']))
-        else:
-            line.sendMessage(to, 'Failed kick member, please mention user you want to kick')
-    elif cmd.startswith('vkick '):
-        if msg.toType != 2: return line.sendMessage(to, 'Failed vultra kick member, use this command only on group chat')
-        if 'MENTION' in msg.contentMetadata.keys():
-            mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
-            for mention in mentions['MENTIONEES']:
-                mid = mention['M']
-                if mid == myMid:
-                    continue
-                try:
-                    line.kickoutFromGroup(to, [mid])
-                    line.findAndAddContactsByMid(mid)
-                    line.inviteIntoGroup(to, [mid])
-                    line.cancelGroupInvitation(to, [mid])
-                except TalkException as talk_error:
-                    return line.sendMessage(to, 'Failed vultra kick members, the reason is `%s`' % talk_error.reason)
-                time.sleep(0.8)
-            line.sendMessage(to, 'Success vultra kick members, totals %i members' % len(mentions['MENTIONEES']))
-        else:
-            line.sendMessage(to, 'Failed vultra kick member, please mention user you want to kick')
+        elif ("Bunuh " in msg.text):
+               if msg._from in admin:
+                  key = eval(msg.contentMetadata["MENTION"])
+                  key["MENTIONEES"][0]["M"]
+                  targets = []
+                  for x in key["MENTIONEES"]:
+                    targets.append(x["M"])
+                  for target in targets:
+                    try:
+                        cl.kickoutFromGroup(msg.to,[target])
+                    except:
+                      cl.sendText(msg.to,"Semoga Tenang Di Luar Sana")
+                      pass
 
 						elif cmd.startswith("lyric "):
 							sep = text.split(" ")
