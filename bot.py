@@ -1505,8 +1505,8 @@ def clientBot(op):
 					elif msg.toType == 2:
 						to = receiver
 					if sender in settings["mimic"]["target"] and settings["mimic"]["status"] == True and settings["mimic"]["target"][sender] == True:
-						if msg.contentType = "acchan":
-							client.sendMessage(to, "trial")
+						if msg.contentType ==0 :
+							client.sendMessage(to, "trial")		
 					if msg.contentType == 0:
 						if settings["autoRead"] == True:
 							client.sendChatChecked(to, msg_id)
