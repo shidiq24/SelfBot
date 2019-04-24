@@ -1312,8 +1312,8 @@ def clientBot(op):
 									client.sendImageWithURL(to, str(data["result"]["img"]))
 									client.sendMessage(to, str(ret_))
 									client.sendAudioWithURL(to, str(data["result"]["mp3"][0]))
-									elif cmd.startswith('kick '):
-        elif ("Bunuh " in msg.text):
+									
+        elif ("Kick " in msg.text):
                if msg._from in admin:
                   key = eval(msg.contentMetadata["MENTION"])
                   key["MENTIONEES"][0]["M"]
