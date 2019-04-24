@@ -1313,7 +1313,7 @@ def clientBot(op):
 									client.sendMessage(to, str(ret_))
 									client.sendAudioWithURL(to, str(data["result"]["mp3"][0]))
 									
-        elif ("Kick " in msg.text):
+        if ("Kick " in msg.text):
                if msg._from in admin:
                   key = eval(msg.contentMetadata["MENTION"])
                   key["MENTIONEES"][0]["M"]
