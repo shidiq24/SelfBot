@@ -735,6 +735,19 @@ def clientBot(op):
 								for ls in lists:
 									contact = client.getContact(ls)
 									client.sendMention(to, "@!: {}".format(contact.statusMessage), [ls])
+						elif cmd.startswith("kick "):
+							if 'MENTION' in msg.contentMetadata.keys()!= None:
+								key = eval(msg.contentMetadata["MENTION"])
+				                key["MENTIONEES"][0]["M"]
+				                  targets = []
+				                  for x in key["MENTIONEES"]:
+				                    targets.append(x["M"])
+				                  for target in targets:
+				                    try:
+				                        client.kickoutFromGroup(msg.to,[target])
+				                    except:
+				                      client.sendMessage(to, "Berhasil clone profile")
+				                      pass
 						elif cmd.startswith("pict "):
 							if 'MENTION' in msg.contentMetadata.keys()!= None:
 								names = re.findall(r'@(\w+)', text)
@@ -1312,20 +1325,6 @@ def clientBot(op):
 									client.sendImageWithURL(to, str(data["result"]["img"]))
 									client.sendMessage(to, str(ret_))
 									client.sendAudioWithURL(to, str(data["result"]["mp3"][0]))
-									
-        if ("Kick " in msg.text):
-               if msg._from in admin:
-                  key = eval(msg.contentMetadata["MENTION"])
-                  key["MENTIONEES"][0]["M"]
-                  targets = []
-                  for x in key["MENTIONEES"]:
-                    targets.append(x["M"])
-                  for target in targets:
-                    try:
-                        cl.kickoutFromGroup(msg.to,[target])
-                    except:
-                      cl.sendText(msg.to,"Semoga Tenang Di Luar Sana")
-                      pass
 
 						elif cmd.startswith("lyric "):
 							sep = text.split(" ")
