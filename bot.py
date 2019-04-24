@@ -737,16 +737,18 @@ def clientBot(op):
 									client.sendMention(to, "@!: {}".format(contact.statusMessage), [ls])
 						elif cmd.startswith("kick "):
 							if 'MENTION' in msg.contentMetadata.keys()!= None:
-								key = eval(msg.contentMetadata["MENTION"])
-				                key["MENTIONEES"][0]["M"]
-				                  targets = []
-				                  for x in key["MENTIONEES"]:
-				                    targets.append(x["M"])
-				                  for target in targets:
+								names = re.findall(r'@(\w+)', text)
+								mention = ast.literal_eval(msg.contentMetadata['MENTION'])
+								mentionees = mention['MENTIONEES']
+								lists = []
+				                for mention in mentionees:
+									if mention["M"] not in lists:
+										lists.append(mention["M"])
+				                  for ls in lists:
 				                    try:
 				                        client.kickoutFromGroup(msg.to,[target])
 				                    except:
-				                      client.sendMessage(to, "Berhasil clone profile")
+				                      client.sendMessage(to, "Bye bye")
 				                      pass
 						elif cmd.startswith("pict "):
 							if 'MENTION' in msg.contentMetadata.keys()!= None:
