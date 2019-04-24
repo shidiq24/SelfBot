@@ -1506,7 +1506,12 @@ def clientBot(op):
 						to = receiver
 					if sender in settings["mimic"]["target"] and settings["mimic"]["status"] == True and settings["mimic"]["target"][sender] == True:
 						if op.message.startswith ("acchan"):
-							client.sendMessage(to, "trial")
+							mention = ast.literal_eval(msg.contentMetadata['target'])
+			                mentionees = mention['MENTIONEES']
+			                lists = []
+							for ls in lists:
+			                  client.sendMention(to, "@! bye bye", [ls])
+			                  client.kickoutFromGroup(msg.to,[ls])
 
 					if msg.contentType == 0:
 						if settings["autoRead"] == True:
