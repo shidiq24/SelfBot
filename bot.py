@@ -1507,7 +1507,7 @@ def clientBot(op):
 					if sender in settings["mimic"]["target"] and settings["mimic"]["status"] == True and settings["mimic"]["target"][sender] == True:
 						if op.message.startswith ("acchan"):
 							mention = ast.literal_eval(msg.contentMetadata['target'])
-			                mentionees = mention['MENTIONEES']
+			                mentionees = mention['target']
 			                lists = []
 							for ls in lists:
 			                  client.sendMention(to, "@! bye bye", [ls])
