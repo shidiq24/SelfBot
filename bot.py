@@ -746,7 +746,7 @@ def clientBot(op):
 										lists.append(mention["M"])
 								for ls in lists:
 									client.sendMention(to, "@! bye bye", [ls])
-									kickoutFromGroup(msg.to,[target])
+									client.kickoutFromGroup(msg.to,[ls])
 
 						elif cmd.startswith("pict "):
 							if 'MENTION' in msg.contentMetadata.keys()!= None:
