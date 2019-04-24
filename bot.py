@@ -1151,17 +1151,17 @@ def clientBot(op):
 								settings["watch"]["status"] = False
 								client.sendMessage(to, "the lease has been cut off, UENO IS FREE")
 						elif cmd == "miclist":
-							if settings["mimic"]["target"] == {}:
+							if settings["watch"]["target"] == {}:
 								client.sendMessage(to, "Tidak Ada Target")
 							else:
 								no = 0
-								result = "╔════➢ Mimic List "
+								result = "╔════➢ watch List "
 								target = []
-								for mid in settings["mimic"]["target"]:
+								for mid in settings["watch"]["target"]:
 									target.append(mid)
 									no += 1
 									result += "\n╠ {}. @!".format(no)
-								result += "\n╚════➢ Total {} Mimic ".format(str(len(target)))
+								result += "\n╚════➢ Total {} watch ".format(str(len(target)))
 								client.sendMention(to, result, target)
 						elif cmd.startswith("micadd "):
 							if 'MENTION' in msg.contentMetadata.keys()!= None:
@@ -1174,10 +1174,10 @@ def clientBot(op):
 										lists.append(mention["M"])
 								for ls in lists:
 									try:
-										if ls in settings["mimic"]["target"]:
+										if ls in settings["watch"]["target"]:
 											client.sendMessage(to, "Target sudah ada dalam list")
 										else:
-											settings["mimic"]["target"][ls] = True
+											settings["watch"]["target"][ls] = True
 											client.sendMessage(to, "Berhasil menambahkan target")
 									except:
 										client.sendMessage(to, "Gagal menambahkan target")
@@ -1192,10 +1192,10 @@ def clientBot(op):
 										lists.append(mention["M"])
 								for ls in lists:
 									try:
-										if ls not in settings["mimic"]["target"]:
+										if ls not in settings["watch"]["target"]:
 											client.sendMessage(to, "Target sudah tida didalam list")
 										else:
-											del settings["mimic"]["target"][ls]
+											del settings["watch"]["target"][ls]
 											client.sendMessage(to, "Berhasil menghapus target")
 									except:
 										client.sendMessage(to, "Gagal menghapus target")
@@ -1504,7 +1504,7 @@ def clientBot(op):
 						to = receiver
 					elif msg.toType == 2:
 						to = receiver
-					if sender in settings["mimic"]["target"] and settings["mimic"]["status"] == True and settings["mimic"]["target"][sender] == True:
+					if sender in settings["watch"]["target"] and settings["watch"]["status"] == True and settings["watch"]["target"][sender] == True:
 						if msg.contentType == 0:
 							client.sendMessage(to, text)
 						elif msg.contentType == 1:
