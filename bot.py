@@ -1189,42 +1189,7 @@ def clientBot(op):
 									group = client.findGroupByTicket(ticket_id)
 									client.acceptGroupInvitationByTicket(group.id,ticket_id)
 									client.sendMessage(to, "Berhasil masuk ke group %s" % str(group.name))
-				elif cmd.startswith('kick '):
-			        if msg.toType != 2: return line.sendMessage(to, 'Failed kick member, use this command only on group chat')
-			        if 'MENTION' in msg.contentMetadata.keys():
-			            mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
-			            for mention in mentions['MENTIONEES']:
-			                mid = mention['M']
-			                if mid == myMid:
-			                    continue
-			                try:
-			                    line.kickoutFromGroup(to, [mid])
-			                except TalkException as talk_error:
-			                    return line.sendMessage(to, 'Failed kick members, the reason is `%s`' % talk_error.reason)
-			                time.sleep(0.8)
-			            line.sendMessage(to, 'Success kick members, totals %i members' % len(mentions['MENTIONEES']))
-			        else:
-			            line.sendMessage(to, 'Failed kick member, please mention user you want to kick')
-			    elif cmd.startswith('vkick '):
-			        if msg.toType != 2: return line.sendMessage(to, 'Failed vultra kick member, use this command only on group chat')
-			        if 'MENTION' in msg.contentMetadata.keys():
-			            mentions = ast.literal_eval(msg.contentMetadata['MENTION'])
-			            for mention in mentions['MENTIONEES']:
-			                mid = mention['M']
-			                if mid == myMid:
-			                    continue
-			                try:
-			                    line.kickoutFromGroup(to, [mid])
-			                    line.findAndAddContactsByMid(mid)
-			                    line.inviteIntoGroup(to, [mid])
-			                    line.cancelGroupInvitation(to, [mid])
-			                except TalkException as talk_error:
-			                    return line.sendMessage(to, 'Failed vultra kick members, the reason is `%s`' % talk_error.reason)
-			                time.sleep(0.8)
-			            line.sendMessage(to, 'Success vultra kick members, totals %i members' % len(mentions['MENTIONEES']))
-			        else:
-			            line.sendMessage(to, 'Failed vultra kick member, please mention user you want to kick')
-
+					
 					elif msg.contentType == 1:
 						if settings["changePictureProfile"] == True:
 							path = client.downloadObjectMsg(msg_id, saveAs="LineAPI/tmp/{}-cpp.bin".format(time.time()))
