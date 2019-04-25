@@ -989,6 +989,7 @@ def clientBot(op):
 											del settings["mimic"]["target"][ls]
 											client.sendMessage(to, "Berhasil menghapus target")
 									except:
+										client.sendMessage(to, "Gagal menghapus target")
 				
 						if text.lower() == "mykey":
 							client.sendMessage(to, "Keycommand yang diset saat ini : 「{}」".format(str(settings["keyCommand"])))
