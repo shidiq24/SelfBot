@@ -1,14 +1,12 @@
 {
     "CPict2": true,
     "CVid2": false,
-    "autoAdd": false,
-    "autoAddMessage": "thanks @! for invite, I love you Too",
     "autoJoin": false,
-    "autoJoinMessage": "Halo @!, makasih sudah invite saya ke group",
+    "autoJoinMessage": "thanks @! for invite, I love you Too",
     "autoJoinTicket": false,
     "autoRead": false,
     "autoRespon": false,
-    "autoResponMessage": "Heh @!, ngapain sih..\ntag-tag di ROOM ,udah kayak BOT aja...",
+    "autoResponMessage": "Yes @! I am agree with You.",
     "changeGroupPicture": [],
     "changePictureProfile": false,
     "changevp": true,
@@ -20,7 +18,9 @@
     "keyCommand": "",
     "mimic": {
         "status": false,
-        "target": {}
+        "target": {
+            "ue58bf088fcd1bb1a3ead1695efe46bfe ": true
+        }
     },
     "myProfile": {
         "coverId": "",
