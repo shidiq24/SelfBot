@@ -309,18 +309,7 @@ def clientBot(op):
 								client.sendMessage(to, str(ret_))
 							except Exception as error:
 						
-						elif cmd == "autjoin on":
-							if settings["autoJoin"] == True:
-								client.sendMessage(to, "Auto join have been activated")
-							else:
-								settings["autoJoin"] = True
-								client.sendMessage(to, "Auto join leggo")
-						elif cmd == "autjoin off":
-							if settings["autoJoin"] == False:
-								client.sendMessage(to, "Auto join have been deactivated")
-							else:
-								settings["autoJoin"] = False
-								client.sendMessage(to, "Go away auto join")
+						
 						elif cmd == "autjointicket on":
 							if settings["autoJoinTicket"] == True:
 								client.sendMessage(to, "Auto join ticket telah aktif")
