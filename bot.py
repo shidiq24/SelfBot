@@ -308,9 +308,8 @@ def clientBot(op):
 								ret_ += "\n╚════➢ Status "
 								client.sendMessage(to, str(ret_))
 							except Exception as error:
-						logError(error)
-						elif cmd == "autjoin on":
-							if settings["autoJoin"] == True:
+								logError(error)
+						elif settings["autoJoin"] == True:
 								client.sendMessage(to, "Auto join have been activated")
 							else:
 								settings["autoJoin"] = True
